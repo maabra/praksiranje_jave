@@ -1,5 +1,6 @@
 import java.util.Scanner;
-
+import java.io.*
+;
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -60,7 +61,8 @@ public class App {
         // prvi pravokutnik
         Pravokutnik pravokutnik1 = new Pravokutnik(2.5, 3.6);
         double velicina1 = pravokutnik1.getPovrsina();
-        System.out.println("Prvi pravokutnik je D " + pravokutnik1.getDuzina() + " x S " + pravokutnik1.getSirina());
+        System.out.println("Prvi pravokutnik je D " + pravokutnik1.getDuzina() +
+                " x S " + pravokutnik1.getSirina());
         System.out.println("P prvog pravokutnika: " + velicina1);
         // drugi pravokutnik s upisom
         System.out.println("Unesite duzinu drugog pravokutnika (primjer: 12,34):");
@@ -69,13 +71,15 @@ public class App {
         drugiPravSir = scTreci.nextDouble();
         Pravokutnik pravokutnik2 = new Pravokutnik(drugiPravDuz, drugiPravSir);
         double velicina2 = pravokutnik2.getPovrsina();
-        System.out.println("Drugi pravokutnik je D " + pravokutnik2.getDuzina() + " x S " + pravokutnik2.getSirina());
+        System.out.println("Drugi pravokutnik je D " + pravokutnik2.getDuzina() +
+                " x S " + pravokutnik2.getSirina());
         System.out.println("P drugog pravokutnika: " + velicina2);
         // prvi kvadar
         Kvadar kvadar1 = new Kvadar(3.7, 2.5, 2.23);
         double velicina3 = kvadar1.getPovrsina();
         double volumen1 = kvadar1.getVolumen();
-        System.out.println("Prvi kvadar je D " + kvadar1.getDuzina() + " x S " + kvadar1.getSirina() + " x V "
+        System.out.println("Prvi kvadar je D " + kvadar1.getDuzina() + " x S " +
+                kvadar1.getSirina() + " x V "
                 + kvadar1.getVisina());
         System.out.println("P prvog kvadra: " + velicina3);
         System.out.println("V prvog kvadra: " + volumen1);
@@ -89,7 +93,8 @@ public class App {
         Kvadar kvadar2 = new Kvadar(drugiKvadDuz, drugiKvadSir, drugiKvadVis);
         double velicina4 = kvadar2.getPovrsina();
         double volumen2 = kvadar2.getVolumen();
-        System.out.println("Drugi kvadar je D " + kvadar2.getDuzina() + " x S " + kvadar2.getSirina()
+        System.out.println("Drugi kvadar je D " + kvadar2.getDuzina() + " x S " +
+                kvadar2.getSirina()
                 + " x V " + kvadar2.getVisina());
         System.out.println("P drugog kvadra: " + velicina4);
         System.out.println("V drugog kvadra: " + volumen2);
@@ -98,6 +103,45 @@ public class App {
         Scanner scCetvrti = new Scanner(System.in);
         int prviBroj = 0;
         int drugiBroj = 0;
-        
+
+        System.out.println("Unesite prvi broj:");
+        prviBroj = scCetvrti.nextInt();
+        System.out.println("Unesite drugi broj:");
+        drugiBroj = scCetvrti.nextInt();
+        System.out.println("Odaberite operaciju: 1 = mnozenje, 2 = dijeljenje, 3 = zbrajanje, 4 = oduzimanje?");
+        int operacija = scCetvrti.nextInt();
+        /*
+         * while (operacija != 1 || operacija != 2 || operacija != 3 || operacija != 4)
+         * {
+         * operacija = scCetvrti.nextInt();
+         * }
+         */
+        int rezultat = 0;
+        String ime = "prazno";
+        switch (operacija) {
+            case 1:
+                ime = "mnozenja";
+                rezultat = Mnozenje.akcijaOperacija(prviBroj, drugiBroj);
+                break;
+            case 2:
+                ime = "dijeljenja";
+                rezultat = Dijeljenje.akcijaOperacija(prviBroj, drugiBroj);
+                break;
+            case 3:
+                ime = "zbrajanja";
+                rezultat = Zbrajanje.akcijaOperacija(prviBroj, drugiBroj);
+                break;
+            case 4:
+                ime = "oduzimanja";
+                rezultat = Oduzimanje.akcijaOperacija(prviBroj, drugiBroj);
+                break;
+            default:
+
+                System.out.println("Uvjeti nisu zadovoljeni!");
+                break;
+        }
+        System.out.println("Rezultat " + ime + " je: " + rezultat);
+
+
     }
 }
